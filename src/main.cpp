@@ -10,6 +10,9 @@
     #include "Wire.h"
 #endif
 
+#define IMU_SDA 27
+#define IMU_SCL 4
+
 // class default I2C address is 0x68
 // specific I2C addresses may be passed as a parameter here
 // AD0 low = 0x68 (default for InvenSense evaluation board)
@@ -85,7 +88,7 @@ void Initialize()
   {
     // join I2C bus (I2Cdev library doesn't do this automatically)
     #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
-        Wire.begin();
+        Wire.begin(IMU_SDA, IMU_SCL);
     #elif I2CDEV_IMPLEMENTATION == I2CDEV_BUILTIN_FASTWIRE
         Fastwire::setup(400, true);
     #endif
